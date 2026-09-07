@@ -72,16 +72,16 @@
   }
   .title-wrap h1 {
     margin: 0;
-    font-size: clamp(28px, 6vw, 54px);
+    font-size: clamp(40px, 9vw, 84px);
     color: #C2185B;
-    text-shadow: 2px 2px 0 #fff, 4px 4px 0 rgba(255,182,193,0.6);
+    text-shadow: 3px 3px 0 #fff, 6px 6px 0 rgba(255,182,193,0.6);
     animation: pop 1.6s ease-in-out infinite;
   }
   .title-wrap h2 {
-    margin: 6px 0 0;
-    font-size: clamp(20px, 4vw, 34px);
+    margin: 8px 0 0;
+    font-size: clamp(28px, 6vw, 52px);
     color: #7E57C2;
-    text-shadow: 1px 1px 0 #fff;
+    text-shadow: 2px 2px 0 #fff;
   }
   @keyframes pop {
     0%, 100% { transform: scale(1) rotate(-1deg); }
@@ -94,11 +94,23 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    animation: bob 3s ease-in-out infinite;
+    animation: flyAround 14s ease-in-out infinite, bob 1.4s ease-in-out infinite;
+    will-change: transform;
+  }
+  @keyframes flyAround {
+    0%   { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg) scale(1); }
+    12%  { transform: translate(-50%, -50%) translate(-32vw, -14vh) rotate(-8deg) scale(0.85); }
+    25%  { transform: translate(-50%, -50%) translate(-38vw, 10vh) rotate(-4deg) scale(0.8); }
+    37%  { transform: translate(-50%, -50%) translate(-14vw, 26vh) rotate(6deg) scale(0.95); }
+    50%  { transform: translate(-50%, -50%) translate(18vw, 24vh) rotate(10deg) scale(0.85); }
+    62%  { transform: translate(-50%, -50%) translate(36vw, 6vh) rotate(6deg) scale(0.8); }
+    75%  { transform: translate(-50%, -50%) translate(30vw, -22vh) rotate(-6deg) scale(0.9); }
+    87%  { transform: translate(-50%, -50%) translate(6vw, -28vh) rotate(-4deg) scale(1); }
+    100% { transform: translate(-50%, -50%) translate(0, 0) rotate(0deg) scale(1); }
   }
   @keyframes bob {
-    0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
-    50% { transform: translate(-50%, -50%) translateY(-22px); }
+    0%, 100% { margin-top: 0px; }
+    50% { margin-top: -14px; }
   }
 
   .sparkle {
@@ -149,9 +161,10 @@
     transform: translateX(-50%);
     width: 60px;
     height: 70px;
-    background: linear-gradient(180deg, #F06292, #EC407A);
+    background: linear-gradient(180deg, #F0177E, #D6006B);
+    border: 2px solid #1A1A1A;
     border-radius: 50% 50% 40% 40%;
-    box-shadow: inset -6px -4px 10px rgba(0,0,0,0.08);
+    box-shadow: inset -6px -4px 10px rgba(0,0,0,0.1);
   }
   .body-small::before,
   .body-small::after {
@@ -160,7 +173,7 @@
     bottom: -6px;
     width: 16px;
     height: 26px;
-    background: #F8BBD0;
+    background: #E0A470;
     border-radius: 40%;
   }
   .body-small::before { left: 8px; transform: rotate(8deg); }
@@ -171,7 +184,7 @@
     top: 158px;
     width: 12px;
     height: 34px;
-    background: #FFCCBC;
+    background: #E0A470;
     border-radius: 10px;
     animation: wave 1.2s ease-in-out infinite;
     transform-origin: top center;
@@ -211,93 +224,33 @@
     50% { transform: rotate(-55deg); }
   }
 
-  .head-big {
+  .head-photo {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 150px;
-    height: 140px;
-    background: linear-gradient(180deg, #FFE0B2, #FFCC80);
+    height: 150px;
     border-radius: 50%;
-    box-shadow: inset -10px -8px 16px rgba(0,0,0,0.06);
+    overflow: hidden;
+    background: transparent;
     z-index: 3;
+    border: 3px solid rgba(255,255,255,0.7);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+  .head-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
-  .hair {
-    position: absolute;
-    top: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 158px;
-    height: 90px;
-    background: linear-gradient(180deg, #8D6E63, #6D4C41);
-    border-radius: 50% 50% 40% 40%;
-    z-index: 1;
+  .hair, .hair-side-l, .hair-side-r {
+    display: none;
   }
-  .hair-side-l, .hair-side-r {
-    position: absolute;
-    top: 45px;
-    width: 26px;
-    height: 60px;
-    background: #6D4C41;
-    border-radius: 0 0 50% 50%;
-    z-index: 1;
-  }
-  .hair-side-l { left: 2px; transform: rotate(-6deg); }
-  .hair-side-r { right: 2px; transform: rotate(6deg); }
 
   .face {
-    position: absolute;
-    top: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 140px;
-    z-index: 3;
-  }
-  .eye {
-    position: absolute;
-    top: 62px;
-    width: 16px;
-    height: 20px;
-    background: #4E342E;
-    border-radius: 50%;
-    animation: blink 3.4s infinite;
-  }
-  .eye::after {
-    content: '';
-    position: absolute;
-    top: 3px; left: 3px;
-    width: 6px; height: 6px;
-    background: #fff;
-    border-radius: 50%;
-  }
-  .eye-left { left: 40px; }
-  .eye-right { right: 40px; }
-  @keyframes blink {
-    0%, 92%, 100% { transform: scaleY(1); }
-    95% { transform: scaleY(0.1); }
-  }
-  .cheek {
-    position: absolute;
-    top: 88px;
-    width: 18px;
-    height: 10px;
-    background: #FFAB91;
-    border-radius: 50%;
-    opacity: 0.7;
-  }
-  .cheek-left { left: 20px; }
-  .cheek-right { right: 20px; }
-  .mouth {
-    position: absolute;
-    top: 96px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 22px;
-    height: 12px;
-    border-bottom: 3px solid #C2185B;
-    border-radius: 0 0 50% 50%;
+    display: none;
   }
 
   .crown {
@@ -336,7 +289,7 @@
     transform: translateX(-50%);
     width: 90px;
     height: 30px;
-    background: repeating-linear-gradient(90deg, #F8BBD0, #F8BBD0 8px, #F48FB1 8px, #F48FB1 16px);
+    background: repeating-linear-gradient(90deg, #F0177E, #F0177E 8px, #1A1A1A 8px, #1A1A1A 11px);
     border-radius: 50% 50% 60% 60%;
     z-index: 2;
     animation: tutuSway 1.6s ease-in-out infinite;
@@ -383,19 +336,12 @@
     <div class="crown">
       <div class="crown-gem"></div>
     </div>
-    <div class="hair"></div>
-    <div class="hair-side-l"></div>
-    <div class="hair-side-r"></div>
     <div class="wing wing-left"></div>
     <div class="wing wing-right"></div>
-    <div class="head-big"></div>
-    <div class="face">
-      <div class="eye eye-left"></div>
-      <div class="eye eye-right"></div>
-      <div class="cheek cheek-left"></div>
-      <div class="cheek cheek-right"></div>
-      <div class="mouth"></div>
+    <div class="head-photo">
+      <img src="zyra-head.png" alt="Zyra" onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,0.15)';">
     </div>
+    <div class="face"></div>
     <div class="body-small"></div>
     <div class="tutu"></div>
     <div class="arm arm-left"></div>
