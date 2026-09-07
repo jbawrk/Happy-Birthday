@@ -14,14 +14,14 @@
     background: linear-gradient(180deg, #FFD1E8 0%, #FFE8CC 45%, #FFF6D9 100%);
     font-family: 'Comic Sans MS', 'Baloo 2', 'Segoe UI', sans-serif;
   }
-
+ 
   .sky {
     position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
   }
-
+ 
   /* Twinkling stars */
   .star {
     position: absolute;
@@ -36,7 +36,7 @@
     0%, 100% { opacity: 0.2; transform: scale(0.8); }
     50% { opacity: 1; transform: scale(1.2); }
   }
-
+ 
   /* Balloons */
   .balloon {
     position: absolute;
@@ -62,7 +62,7 @@
     50% { transform: translateY(-60vh) translateX(20px) rotate(4deg); }
     100% { transform: translateY(-130vh) translateX(-10px) rotate(-4deg); }
   }
-
+ 
   .title-wrap {
     position: absolute;
     top: 6%;
@@ -87,7 +87,7 @@
     0%, 100% { transform: scale(1) rotate(-1deg); }
     50% { transform: scale(1.06) rotate(1deg); }
   }
-
+ 
   /* Fairy scene */
   .fairy-stage {
     position: absolute;
@@ -112,7 +112,7 @@
     0%, 100% { margin-top: 0px; }
     50% { margin-top: -14px; }
   }
-
+ 
   .sparkle {
     position: absolute;
     width: 10px;
@@ -125,7 +125,7 @@
     0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
     50% { opacity: 1; transform: scale(1) rotate(90deg); }
   }
-
+ 
   .wing {
     position: absolute;
     width: 110px;
@@ -154,7 +154,7 @@
     0%, 100% { transform: rotate(15deg) scaleX(1); }
     50% { transform: rotate(-5deg) scaleX(0.85); }
   }
-
+ 
   .body-small {
     position: absolute;
     top: 218px;
@@ -180,7 +180,7 @@
   }
   .body-small::before { left: 12px; transform: rotate(8deg); }
   .body-small::after { right: 12px; transform: rotate(-8deg); }
-
+ 
   .arm {
     position: absolute;
     top: 230px;
@@ -197,7 +197,7 @@
     0%, 100% { transform: rotate(10deg); }
     50% { transform: rotate(-25deg); }
   }
-
+ 
   .wand {
     position: absolute;
     top: 218px;
@@ -225,7 +225,7 @@
     0%, 100% { transform: rotate(-20deg); }
     50% { transform: rotate(-55deg); }
   }
-
+ 
   .head-photo {
     position: absolute;
     top: 0;
@@ -246,15 +246,15 @@
     object-fit: cover;
     display: block;
   }
-
+ 
   .hair, .hair-side-l, .hair-side-r {
     display: none;
   }
-
+ 
   .face {
     display: none;
   }
-
+ 
   .crown {
     position: absolute;
     top: -48px;
@@ -283,7 +283,7 @@
     background: #E91E63;
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   }
-
+ 
   .tutu {
     position: absolute;
     top: 258px;
@@ -301,11 +301,11 @@
     0%, 100% { transform: translateX(-50%) rotate(-3deg); }
     50% { transform: translateX(-50%) rotate(3deg); }
   }
-
+ 
   .subtext {
     display: none;
   }
-
+ 
   .confetti {
     position: absolute;
     top: -20px;
@@ -317,7 +317,7 @@
     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
     100% { transform: translateY(110vh) rotate(540deg); opacity: 0.9; }
   }
-
+ 
   /* Age badge */
   .age-badge {
     position: absolute;
@@ -345,7 +345,7 @@
     0%, 100% { transform: translate(-50%, -50%) scale(1); }
     50% { transform: translate(-50%, -50%) scale(1.06); }
   }
-
+ 
   /* Cakes */
   .cake {
     position: absolute;
@@ -394,25 +394,26 @@
     border: 2px solid #1A1A1A;
     border-radius: 4px;
   }
-
+ 
   /* Dragons */
   .dragon {
     position: absolute;
-    width: 190px;
-    height: 70px;
+    width: 240px;
+    height: 100px;
     animation: dragonDrift linear infinite;
   }
   .dragon svg {
     width: 100%;
     height: 100%;
+    overflow: visible;
   }
   .dragon-wiggle {
     animation: dragonWiggle 1.4s ease-in-out infinite;
-    transform-origin: 170px 30px;
+    transform-origin: 175px 30px;
   }
   @keyframes dragonWiggle {
-    0%, 100% { transform: skewY(-3deg); }
-    50% { transform: skewY(3deg); }
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
   }
   @keyframes dragonDrift {
     0%   { transform: translate(0, 0) rotate(0deg); }
@@ -421,36 +422,30 @@
     75%  { transform: translate(-18vw, 20vh) rotate(3deg); }
     100% { transform: translate(0, 0) rotate(0deg); }
   }
-
-  /* Pink fairy dust trail */
-  .fairy-dust {
+ 
+  /* Pink fairy dust trail canvas */
+  #dustCanvas {
     position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #FFFFFF 0%, #FFD1E8 30%, #F06292 65%, transparent 100%);
-    box-shadow: 0 0 12px 4px rgba(240, 98, 146, 0.8), 0 0 4px 2px rgba(255, 255, 255, 0.9);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
     z-index: 6;
-    animation: dustFade 1.4s ease-out forwards;
-  }
-  @keyframes dustFade {
-    0% { opacity: 1; transform: scale(1.3) translateY(0); }
-    60% { opacity: 0.85; transform: scale(1) translateY(12px); }
-    100% { opacity: 0; transform: scale(0.15) translateY(30px); }
   }
 </style>
 </head>
 <body>
 <div class="sky" id="sky">
-
+  <canvas id="dustCanvas"></canvas>
+ 
   <div class="title-wrap">
     <h1>Happy Birthday</h1>
     <h2>Zyra!</h2>
   </div>
-
+ 
   <div class="age-badge"><span>27</span></div>
-
+ 
   <div class="fairy-stage">
     <div class="crown">
       <div class="crown-gem"></div>
@@ -468,10 +463,10 @@
     <div class="wand"></div>
   </div>
   </div>
-
+ 
 <script>
   const sky = document.getElementById('sky');
-
+ 
   // Stars
   for (let i = 0; i < 30; i++) {
     const s = document.createElement('div');
@@ -481,7 +476,7 @@
     s.style.animationDelay = Math.random() * 2 + 's';
     sky.appendChild(s);
   }
-
+ 
   // Sparkles around the fairy
   const sparklePositions = [
     [10, 20], [90, 15], [15, 70], [85, 65], [50, 5], [30, 90], [70, 88], [5, 45], [95, 50]
@@ -494,7 +489,7 @@
     sp.style.animationDelay = (i * 0.2) + 's';
     sky.appendChild(sp);
   });
-
+ 
   // Balloons
   const balloonColors = ['#F06292', '#BA68C8', '#4FC3F7', '#FFD54F', '#81C784'];
   for (let i = 0; i < 6; i++) {
@@ -506,7 +501,7 @@
     b.style.animationDelay = (Math.random() * 6) + 's';
     sky.appendChild(b);
   }
-
+ 
   // Confetti
   const confettiColors = ['#F06292', '#BA68C8', '#4FC3F7', '#FFD54F', '#81C784', '#FF8A65'];
   for (let i = 0; i < 40; i++) {
@@ -519,7 +514,7 @@
     c.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
     sky.appendChild(c);
   }
-
+ 
   // Cakes
   for (let i = 0; i < 3; i++) {
     const cake = document.createElement('div');
@@ -535,28 +530,38 @@
     `;
     sky.appendChild(cake);
   }
-
-  // Dragons (Chinese dragon style — serpentine body, mane, antlers, whiskers)
-  const dragonSVG = (main, accent) => `
-    <svg viewBox="0 0 190 70">
-      <path d="M5,50 C30,20 45,60 70,38 C95,15 110,58 135,32 C150,18 158,25 165,30"
-            stroke="${main}" stroke-width="16" fill="none" stroke-linecap="round"/>
-      <path d="M5,50 C30,20 45,60 70,38 C95,15 110,58 135,32 C150,18 158,25 165,30"
-            stroke="${accent}" stroke-width="16" fill="none" stroke-linecap="round"
-            stroke-dasharray="2 12" opacity="0.55"/>
-      <polygon points="20,32 26,18 32,34" fill="${accent}"/>
-      <polygon points="45,50 51,36 57,52" fill="${accent}"/>
-      <polygon points="72,26 78,12 84,28" fill="${accent}"/>
-      <polygon points="100,44 106,30 112,46" fill="${accent}"/>
-      <polygon points="128,22 134,10 139,24" fill="${accent}"/>
+ 
+  // Dragons — proper mythical dragon: segmented body, legs, horned head, snout, whiskers
+  const dragonSVG = (i, main, accent) => `
+    <svg viewBox="0 0 240 100">
+      <defs>
+        <linearGradient id="dg${i}" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="${main}"/>
+          <stop offset="1" stop-color="${accent}"/>
+        </linearGradient>
+      </defs>
+      <path d="M8,62 C34,28 56,72 84,42 C110,14 130,64 152,36"
+            stroke="url(#dg${i})" stroke-width="24" fill="none" stroke-linecap="round"/>
+      <circle cx="20" cy="52" r="11" fill="${accent}" opacity="0.55"/>
+      <circle cx="46" cy="42" r="11" fill="${accent}" opacity="0.55"/>
+      <circle cx="72" cy="52" r="11" fill="${accent}" opacity="0.55"/>
+      <circle cx="98" cy="36" r="11" fill="${accent}" opacity="0.55"/>
+      <circle cx="124" cy="44" r="11" fill="${accent}" opacity="0.55"/>
+      <path d="M40,50 L34,70 M34,70 l-6,4 M34,70 l4,6" stroke="${main}" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M92,40 L86,62 M86,62 l-6,4 M86,62 l4,6" stroke="${main}" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <polygon points="30,34 36,18 41,36" fill="${accent}"/>
+      <polygon points="58,28 64,10 69,30" fill="${accent}"/>
+      <polygon points="86,22 92,4 97,24" fill="${accent}"/>
+      <polygon points="112,32 118,16 123,34" fill="${accent}"/>
       <g class="dragon-wiggle">
-        <ellipse cx="172" cy="28" rx="18" ry="15" fill="${main}"/>
-        <path d="M160,16 Q156,2 148,-2" stroke="${accent}" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path d="M170,12 Q170,-2 166,-8" stroke="${accent}" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <path d="M162,32 Q146,30 136,36" stroke="${accent}" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M163,38 Q150,42 142,50" stroke="${accent}" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <circle cx="180" cy="24" r="2.4" fill="#1A1A1A"/>
-        <ellipse cx="187" cy="30" rx="6" ry="4" fill="${main}"/>
+        <path d="M148,32 Q170,18 192,28 Q200,34 194,42 Q178,44 164,38 Q168,48 156,50 Q144,44 148,32 Z" fill="url(#dg${i})"/>
+        <path d="M192,28 Q210,26 218,33 Q210,38 196,37 Z" fill="url(#dg${i})"/>
+        <polygon points="212,32 216,34 212,36" fill="#FFF"/>
+        <path d="M172,20 Q166,4 154,-4" stroke="${accent}" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M182,18 Q182,0 174,-10" stroke="${accent}" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M192,32 Q176,36 162,44" stroke="${accent}" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M194,38 Q180,44 168,52" stroke="${accent}" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="180" cy="27" r="3" fill="#1A1A1A"/>
       </g>
     </svg>
   `;
@@ -564,42 +569,90 @@
   for (let i = 0; i < 3; i++) {
     const d = document.createElement('div');
     d.className = 'dragon';
-    d.style.left = (10 + i * 30) + '%';
-    d.style.top = (12 + i * 22) + '%';
+    d.style.left = (8 + i * 32) + '%';
+    d.style.top = (10 + i * 24) + '%';
     d.style.animationDuration = (18 + i * 3) + 's';
     d.style.animationDelay = (i * 1.5) + 's';
     const [main, accent] = dragonColors[i % dragonColors.length];
-    d.innerHTML = dragonSVG(main, accent);
+    d.innerHTML = dragonSVG(i, main, accent);
     sky.appendChild(d);
   }
-
-  // Pink fairy dust trail — follows the fairy's actual on-screen position
+ 
+  // Pink fairy dust trail — smooth continuous streak on canvas, following her actual position
   const fairyStage = document.querySelector('.fairy-stage');
   const wandTip = document.querySelector('.wand');
-  const dustColors = ['#FF80AB', '#F06292', '#FFC1E3', '#FF4FA0'];
-  function spawnDust() {
+  const canvas = document.getElementById('dustCanvas');
+  const ctx = canvas.getContext('2d');
+  function resizeCanvas() {
+    canvas.width = sky.clientWidth;
+    canvas.height = sky.clientHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+ 
+  function trailLoop() {
+    // fade the existing trail gradually instead of clearing it instantly
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.fillStyle = 'rgba(0,0,0,0.06)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.globalCompositeOperation = 'source-over';
+ 
     const rect = (wandTip || fairyStage).getBoundingClientRect();
     const skyRect = sky.getBoundingClientRect();
-    const baseX = rect.left + rect.width / 2 - skyRect.left;
-    const baseY = rect.top + rect.height * 0.7 - skyRect.top;
-    const count = 2 + Math.floor(Math.random() * 2);
-    for (let n = 0; n < count; n++) {
-      const x = baseX + (Math.random() * 44 - 22);
-      const y = baseY + (Math.random() * 44 - 22);
-      const dust = document.createElement('div');
-      dust.className = 'fairy-dust';
-      dust.style.left = x + 'px';
-      dust.style.top = y + 'px';
-      const size = 8 + Math.random() * 10;
-      dust.style.width = size + 'px';
-      dust.style.height = size + 'px';
-      dust.style.background = `radial-gradient(circle, #FFFFFF 0%, ${dustColors[n % dustColors.length]} 45%, transparent 100%)`;
-      dust.style.animationDuration = (1.1 + Math.random() * 0.6) + 's';
-      sky.appendChild(dust);
-      setTimeout(() => dust.remove(), 1700);
+    const x = rect.left + rect.width / 2 - skyRect.left;
+    const y = rect.top + rect.height * 0.7 - skyRect.top;
+ 
+    const grad = ctx.createRadialGradient(x, y, 0, x, y, 22);
+    grad.addColorStop(0, 'rgba(255,255,255,0.95)');
+    grad.addColorStop(0.35, 'rgba(255,105,180,0.9)');
+    grad.addColorStop(1, 'rgba(255,105,180,0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(x, y, 22, 0, Math.PI * 2);
+    ctx.fill();
+ 
+    // a couple of extra small sparkle flecks near the head for texture
+    for (let k = 0; k < 2; k++) {
+      const sx = x + (Math.random() * 30 - 15);
+      const sy = y + (Math.random() * 30 - 15);
+      ctx.fillStyle = 'rgba(255,255,255,0.9)';
+      ctx.beginPath();
+      ctx.arc(sx, sy, 1.6, 0, Math.PI * 2);
+      ctx.fill();
     }
+ 
+    requestAnimationFrame(trailLoop);
   }
-  setInterval(spawnDust, 45);
+  requestAnimationFrame(trailLoop);
+ 
+  // Randomized flight pattern — a new random loop path each time the page loads
+  function buildRandomFlight() {
+    const waypointCount = 6 + Math.floor(Math.random() * 3); // 6-8 waypoints
+    const pts = [];
+    for (let i = 0; i < waypointCount; i++) {
+      pts.push({
+        x: (Math.random() * 68 - 34).toFixed(1),
+        y: (Math.random() * 52 - 26).toFixed(1),
+        r: (Math.random() * 20 - 10).toFixed(1),
+        s: (0.8 + Math.random() * 0.25).toFixed(2)
+      });
+    }
+    let frames = `0% { transform: translate(-50%, -50%) translate(0,0) rotate(0deg) scale(1); }\n`;
+    pts.forEach((p, i) => {
+      const pct = Math.round(((i + 1) / (waypointCount + 1)) * 100);
+      frames += `${pct}% { transform: translate(-50%, -50%) translate(${p.x}vw, ${p.y}vh) rotate(${p.r}deg) scale(${p.s}); }\n`;
+    });
+    frames += `100% { transform: translate(-50%, -50%) translate(0,0) rotate(0deg) scale(1); }`;
+ 
+    const styleTag = document.createElement('style');
+    styleTag.textContent = `@keyframes flyRandom { ${frames} }`;
+    document.head.appendChild(styleTag);
+ 
+    const duration = (13 + Math.random() * 7).toFixed(1);
+    fairyStage.style.animation = `flyRandom ${duration}s ease-in-out infinite, bob 1.4s ease-in-out infinite`;
+  }
+  buildRandomFlight();
 </script>
 </body>
 </html>
+ 
