@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Zyra!</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(180deg, #FFD1E8 0%, #FFE8CC 45%, #FFF6D9 100%);
+    font-family: 'Comic Sans MS', 'Baloo 2', 'Segoe UI', sans-serif;
+  }
+
+  .sky {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Twinkling stars */
+  .star {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    opacity: 0.8;
+    animation: twinkle 2.2s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* Balloons */
+  .balloon {
+    position: absolute;
+    bottom: -120px;
+    width: 46px;
+    height: 58px;
+    border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%;
+    animation: floatUp linear infinite;
+    opacity: 0.9;
+  }
+  .balloon::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 1px;
+    height: 60px;
+    background: rgba(255,255,255,0.6);
+    transform: translateX(-50%);
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); }
+    50% { transform: translateY(-60vh) translateX(20px) rotate(4deg); }
+    100% { transform: translateY(-130vh) translateX(-10px) rotate(-4deg); }
+  }
+
+  .title-wrap {
+    position: absolute;
+    top: 6%;
+    width: 100%;
+    text-align: center;
+    z-index: 5;
+  }
+  .title-wrap h1 {
+    margin: 0;
+    font-size: clamp(28px, 6vw, 54px);
+    color: #C2185B;
+    text-shadow: 2px 2px 0 #fff, 4px 4px 0 rgba(255,182,193,0.6);
+    animation: pop 1.6s ease-in-out infinite;
+  }
+  .title-wrap h2 {
+    margin: 6px 0 0;
+    font-size: clamp(20px, 4vw, 34px);
+    color: #7E57C2;
+    text-shadow: 1px 1px 0 #fff;
+  }
+  @keyframes pop {
+    0%, 100% { transform: scale(1) rotate(-1deg); }
+    50% { transform: scale(1.06) rotate(1deg); }
+  }
+
+  /* Fairy scene */
+  .fairy-stage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: bob 3s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+    50% { transform: translate(-50%, -50%) translateY(-22px); }
+  }
+
+  .sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #FFF176;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: sparkleFade 1.4s ease-in-out infinite;
+  }
+  @keyframes sparkleFade {
+    0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(90deg); }
+  }
+
+  .wing {
+    position: absolute;
+    width: 70px;
+    height: 90px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(179,157,219,0.5) 70%, rgba(179,157,219,0.2));
+    border: 2px solid rgba(255,255,255,0.8);
+    border-radius: 60% 40% 60% 40%;
+    top: 60px;
+    transform-origin: bottom center;
+  }
+  .wing-left {
+    left: -40px;
+    animation: flapLeft 0.5s ease-in-out infinite;
+  }
+  .wing-right {
+    right: -40px;
+    border-radius: 40% 60% 40% 60%;
+    animation: flapRight 0.5s ease-in-out infinite;
+  }
+  @keyframes flapLeft {
+    0%, 100% { transform: rotate(-15deg) scaleX(1); }
+    50% { transform: rotate(5deg) scaleX(0.85); }
+  }
+  @keyframes flapRight {
+    0%, 100% { transform: rotate(15deg) scaleX(1); }
+    50% { transform: rotate(-5deg) scaleX(0.85); }
+  }
+
+  .body-small {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 70px;
+    background: linear-gradient(180deg, #F06292, #EC407A);
+    border-radius: 50% 50% 40% 40%;
+    box-shadow: inset -6px -4px 10px rgba(0,0,0,0.08);
+  }
+  .body-small::before,
+  .body-small::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    width: 16px;
+    height: 26px;
+    background: #F8BBD0;
+    border-radius: 40%;
+  }
+  .body-small::before { left: 8px; transform: rotate(8deg); }
+  .body-small::after { right: 8px; transform: rotate(-8deg); }
+
+  .arm {
+    position: absolute;
+    top: 158px;
+    width: 12px;
+    height: 34px;
+    background: #FFCCBC;
+    border-radius: 10px;
+    animation: wave 1.2s ease-in-out infinite;
+    transform-origin: top center;
+  }
+  .arm-left { left: 50%; margin-left: -46px; animation-delay: 0.1s; }
+  .arm-right { left: 50%; margin-left: 34px; }
+  @keyframes wave {
+    0%, 100% { transform: rotate(10deg); }
+    50% { transform: rotate(-25deg); }
+  }
+
+  .wand {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    margin-left: 40px;
+    width: 3px;
+    height: 40px;
+    background: #FFD54F;
+    border-radius: 4px;
+    transform: rotate(-20deg);
+    transform-origin: bottom center;
+    animation: wandWave 1.2s ease-in-out infinite;
+  }
+  .wand::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -8px;
+    width: 18px;
+    height: 18px;
+    background: #FFF176;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+  @keyframes wandWave {
+    0%, 100% { transform: rotate(-20deg); }
+    50% { transform: rotate(-55deg); }
+  }
+
+  .head-big {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 140px;
+    background: linear-gradient(180deg, #FFE0B2, #FFCC80);
+    border-radius: 50%;
+    box-shadow: inset -10px -8px 16px rgba(0,0,0,0.06);
+    z-index: 3;
+  }
+
+  .hair {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 158px;
+    height: 90px;
+    background: linear-gradient(180deg, #8D6E63, #6D4C41);
+    border-radius: 50% 50% 40% 40%;
+    z-index: 1;
+  }
+  .hair-side-l, .hair-side-r {
+    position: absolute;
+    top: 45px;
+    width: 26px;
+    height: 60px;
+    background: #6D4C41;
+    border-radius: 0 0 50% 50%;
+    z-index: 1;
+  }
+  .hair-side-l { left: 2px; transform: rotate(-6deg); }
+  .hair-side-r { right: 2px; transform: rotate(6deg); }
+
+  .face {
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 140px;
+    z-index: 3;
+  }
+  .eye {
+    position: absolute;
+    top: 62px;
+    width: 16px;
+    height: 20px;
+    background: #4E342E;
+    border-radius: 50%;
+    animation: blink 3.4s infinite;
+  }
+  .eye::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 6px; height: 6px;
+    background: #fff;
+    border-radius: 50%;
+  }
+  .eye-left { left: 40px; }
+  .eye-right { right: 40px; }
+  @keyframes blink {
+    0%, 92%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+  }
+  .cheek {
+    position: absolute;
+    top: 88px;
+    width: 18px;
+    height: 10px;
+    background: #FFAB91;
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+  .cheek-left { left: 20px; }
+  .cheek-right { right: 20px; }
+  .mouth {
+    position: absolute;
+    top: 96px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 12px;
+    border-bottom: 3px solid #C2185B;
+    border-radius: 0 0 50% 50%;
+  }
+
+  .crown {
+    position: absolute;
+    top: -34px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 26px;
+    z-index: 4;
+  }
+  .crown::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 16px;
+    background: #FFD54F;
+    clip-path: polygon(0% 100%, 0% 40%, 20% 100%, 30% 20%, 50% 100%, 70% 20%, 80% 100%, 100% 40%, 100% 100%);
+  }
+  .crown-gem {
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: #E91E63;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+
+  .tutu {
+    position: absolute;
+    top: 178px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 30px;
+    background: repeating-linear-gradient(90deg, #F8BBD0, #F8BBD0 8px, #F48FB1 8px, #F48FB1 16px);
+    border-radius: 50% 50% 60% 60%;
+    z-index: 2;
+    animation: tutuSway 1.6s ease-in-out infinite;
+    transform-origin: top center;
+  }
+  @keyframes tutuSway {
+    0%, 100% { transform: translateX(-50%) rotate(-3deg); }
+    50% { transform: translateX(-50%) rotate(3deg); }
+  }
+
+  .subtext {
+    position: absolute;
+    bottom: 8%;
+    width: 100%;
+    text-align: center;
+    z-index: 5;
+    font-size: clamp(14px, 2.6vw, 20px);
+    color: #6A1B9A;
+    text-shadow: 1px 1px 0 #fff;
+  }
+
+  .confetti {
+    position: absolute;
+    top: -20px;
+    width: 8px;
+    height: 14px;
+    animation: confettiFall linear infinite;
+  }
+  @keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(540deg); opacity: 0.9; }
+  }
+</style>
+</head>
+<body>
+<div class="sky" id="sky">
+
+  <div class="title-wrap">
+    <h1>Happy Birthday</h1>
+    <h2>Zyra!</h2>
+  </div>
+
+  <div class="fairy-stage">
+    <div class="crown">
+      <div class="crown-gem"></div>
+    </div>
+    <div class="hair"></div>
+    <div class="hair-side-l"></div>
+    <div class="hair-side-r"></div>
+    <div class="wing wing-left"></div>
+    <div class="wing wing-right"></div>
+    <div class="head-big"></div>
+    <div class="face">
+      <div class="eye eye-left"></div>
+      <div class="eye eye-right"></div>
+      <div class="cheek cheek-left"></div>
+      <div class="cheek cheek-right"></div>
+      <div class="mouth"></div>
+    </div>
+    <div class="body-small"></div>
+    <div class="tutu"></div>
+    <div class="arm arm-left"></div>
+    <div class="arm arm-right"></div>
+    <div class="wand"></div>
+  </div>
+
+  <div class="subtext">made with sparkles just for you ✨</div>
+</div>
+
+<script>
+  const sky = document.getElementById('sky');
+
+  // Stars
+  for (let i = 0; i < 30; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 60 + '%';
+    s.style.animationDelay = Math.random() * 2 + 's';
+    sky.appendChild(s);
+  }
+
+  // Sparkles around the fairy
+  const sparklePositions = [
+    [10, 20], [90, 15], [15, 70], [85, 65], [50, 5], [30, 90], [70, 88], [5, 45], [95, 50]
+  ];
+  sparklePositions.forEach(([x, y], i) => {
+    const sp = document.createElement('div');
+    sp.className = 'sparkle';
+    sp.style.left = x + '%';
+    sp.style.top = y + '%';
+    sp.style.animationDelay = (i * 0.2) + 's';
+    sky.appendChild(sp);
+  });
+
+  // Balloons
+  const balloonColors = ['#F06292', '#BA68C8', '#4FC3F7', '#FFD54F', '#81C784'];
+  for (let i = 0; i < 6; i++) {
+    const b = document.createElement('div');
+    b.className = 'balloon';
+    b.style.left = (10 + i * 16) + '%';
+    b.style.background = balloonColors[i % balloonColors.length];
+    b.style.animationDuration = (8 + Math.random() * 4) + 's';
+    b.style.animationDelay = (Math.random() * 6) + 's';
+    sky.appendChild(b);
+  }
+
+  // Confetti
+  const confettiColors = ['#F06292', '#BA68C8', '#4FC3F7', '#FFD54F', '#81C784', '#FF8A65'];
+  for (let i = 0; i < 40; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random() * 100 + '%';
+    c.style.background = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+    c.style.animationDuration = (3 + Math.random() * 4) + 's';
+    c.style.animationDelay = (Math.random() * 5) + 's';
+    c.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+    sky.appendChild(c);
+  }
+</script>
+</body>
+</html>
